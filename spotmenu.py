@@ -253,7 +253,6 @@ class GUIManager:
         self.status_str = tk.StringVar()
         self.image = None
         self.image_wrapper = None
-
         self.update_from_spotify_block(spotify_block, status)
 
     def update_from_spotify_block(self, spotify_block, status):
