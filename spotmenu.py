@@ -284,11 +284,12 @@ class GUIManager:
         x, y = mouse_data["root_x"], mouse_data["root_y"]
 
         if y > 1440:
-            self.root.geometry(f"+1400+1020")
+            self.root.geometry(f"+1400+1030")
         else:
             self.root.geometry(f"+1650+1089")
 
         self.root.bind("<Escape>", self.on_focus_out)
+        self.root.bind("<FocusOut>", self.on_focus_out)
 
         top_frame = tk.Frame(self.root)
 
