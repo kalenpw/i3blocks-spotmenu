@@ -11,6 +11,9 @@ import io
 import urllib.request
 from PIL import Image, ImageTk
 
+# to calculate mouse position
+from Xlib import display
+
 from copy import deepcopy
 
 import tkinter as tk
@@ -276,8 +279,15 @@ class GUIManager:
         self.root.attributes("-type", "dialog")
         self.root.configure(background="#222222")
 
-        # width x height + right offset + top offset
-        self.root.geometry(f"+1650+1082")
+        # bad kludge, if y > 1440 then I'm on lower monitor 
+        mouse_data = display.Display().screen().root.query_pointer()._data
+        x, y = mouse_data["root_x"], mouse_data["root_y"]
+
+        if y > 1440:
+            self.root.geometry(f"+1400+1020")
+        else:
+            self.root.geometry(f"+1650+1089")
+
         self.root.bind("<Escape>", self.on_focus_out)
 
         top_frame = tk.Frame(self.root)
